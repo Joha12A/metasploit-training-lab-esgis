@@ -42,7 +42,7 @@ Pour chaque service vulnérable étudié :
 4. **Paramétrage** : `set RHOSTS 10.1.0.1`
 
 ### Capture d'écran associée :
-![Configuration du module vsftpd 2.3.4](../screenshots/04-vulnerabilites/vuln-01-exec.png)
+![Configuration du module vsftpd 2.3.4](../screenshots/04-vulnerabilites/01-vsftpd-options.png)
 
 ---
 

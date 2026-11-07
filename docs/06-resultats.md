@@ -14,9 +14,9 @@ Centraliser l'ensemble des preuves de concept (PoC), statuts de vulnérabilités
 
 ## 4. Captures d'écran des Preuves de Concept (PoC)
 - **PoC Vulnérabilité 01 (`vsftpd 2.3.4`)** :
-  ![Preuve PoC vuln-01](../screenshots/05-resultats/vuln-01-poc.png)
+  ![Preuve PoC vuln-01](../screenshots/05-resultats/01-vsftpd-session-root.png)
 - **PoC Vulnérabilité 02 (`ProFTPD 1.3.5a`)** :
-  ![Preuve PoC vuln-02](../screenshots/05-resultats/vuln-02-poc.png)
+  ![Preuve PoC vuln-02](../screenshots/05-resultats/02-proftpd-session-shell.png)
 
 ## 5. Résultat observé
 

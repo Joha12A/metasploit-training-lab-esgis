@@ -49,10 +49,10 @@ msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
 ## 3. Preuves Réelles
 
 ### Capture d'écran 1 — Configuration des options dans Metasploit
-![Configuration du module vsftpd 2.3.4](../../screenshots/04-vulnerabilites/vuln-01-exec.png)
+![Configuration du module vsftpd 2.3.4](../../screenshots/04-vulnerabilites/01-vsftpd-options.png)
 
 ### Capture d'écran 2 — Preuve technique / Session interactive (PoC)
-![Preuve de concept vsftpd](../../screenshots/05-resultats/vuln-01-poc.png)
+![Preuve de concept vsftpd](../../screenshots/05-resultats/01-vsftpd-session-root.png)
 
 ### Résultat technique observé :
 - Déclenchement réussi de la porte dérobée sur la cible autorisée `10.1.0.1`.
