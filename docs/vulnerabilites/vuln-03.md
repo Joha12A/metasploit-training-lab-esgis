@@ -1,7 +1,7 @@
-# Fiche Vulnérabilité N°03 — IRC (UnrealIRCd)
+# Fiche Vulnérabilité N°03 — UnrealIRCd 3.2.8.1 (CVE-2010-2075)
 
 ## 1. Contexte et Identification
-- **Service cible** : IRC (UnrealIRCd)
+- **Service cible** : UnrealIRCd (serveur IRC)
 - **Port d'écoute** : `6667/tcp`
 - **Version détectée** : `UnrealIRCd 3.2.8.1`
 - **Référence CVE** : `CVE-2010-2075`
@@ -9,25 +9,20 @@
 - **Cible autorisée** : ESGIS VulnBox (`10.1.0.1`)
 
 ## 2. Observations Techniques
-- **Description du composant** : Service identifié via le scan de bannières Nmap (`reports/nmap-services.txt`).
+- **Description** : Serveur IRC UnrealIRCd, identifié via le scan Nmap (`reports/nmap-services.txt`).
 - **Vecteur d'exposition** : Port réseau direct accessible à travers le tunnel WireGuard (`10.1.0.1`).
-- **Module Metasploit associé** : `exploit/unix/irc/unreal_ircd_3281_backdoor`
+- **Module Metasploit** : `exploit/unix/irc/unreal_ircd_3281_backdoor`
 
-## 3. Preuves Réelles
-> [!NOTE]
-> *Cette section sera complétée uniquement avec les captures d'écran et sorties console obtenues lors de l'exercice encadré.*
+## 3. Démarche survolée
+- Le module Metasploit a confirmé que la cible était vulnérable (`[+] The target appears to be vulnerable. UnrealIRCd detected in banner`) et a envoyé la commande malveillante (`[*] Sending IRC backdoor command`).
+- Cependant, aucune session interactive n'a été obtenue (backdoor dite "aveugle" : exécution sans retour).
+- Un test avec un payload `cmd/unix/reverse_bash` n'a pas non plus abouti.
 
-- **Capture d'écran de l'analyse** : `screenshots/04-vulnerabilites/vuln-03-exec.png` *(En attente)*
-- **Preuve technique / Résultat** : `screenshots/05-resultats/vuln-03-poc.png` *(En attente)*
-- **Extrait de journal / Sortie console** :
-```text
-[En attente de vérification sur 10.1.0.1]
-```
-
-## 4. Mesures Correctives et Remédiation
-- **Mise à jour logicielle** : Appliquer les correctifs de sécurité fournis par l'éditeur pour la version `UnrealIRCd 3.2.8.1`.
-- **Principe de moindre privilège** : Exécuter le service sous un compte non privilégié.
-- **Filtrage réseau** : Restreindre l'accès au port `6667` aux seuls hôtes d'administration autorisés.
+## 4. Mesures Correctives
+- **Mise à jour logicielle** : Remplacer UnrealIRCd 3.2.8.1 par une version maintenue et exempte de backdoor.
+- **Contrôle d'intégrité** : Vérifier les signatures GPG et les sommes SHA-256 des paquets.
+- **Filtrage réseau** : Restreindre l'accès au port `6667/tcp` aux réseaux d'administration.
+- **Surveillance** : Auditer les bannières des services IRC et détecter les versions obsolètes.
 
 ---
-**Statut actuel** : ⏳ *En attente de réalisation du test pédagogique*
+**Statut** : ⏳ **En attente** — Backdoor confirmée, session non obtenue ; à réévaluer avec une autre approche.
