@@ -61,7 +61,7 @@ PORT     STATE SERVICE VERSION
 La recherche du module correspondant a été effectuée dans `msfconsole` :
 
 ```text id="7vhcwu"
-msf6 > search shellshock
+msf > search shellshock
 
 Matching Modules
 ================
