@@ -1,33 +1,33 @@
-# Fiche Vulnérabilité N°05 — Apache Tomcat
+# Fiche Vulnérabilité N°05 — Apache Struts 2 (S2-045)
 
 ## 1. Contexte et Identification
-- **Service cible** : Apache Tomcat
+- **Service cible** : Serveur web d'applications Apache Struts 2
 - **Port d'écoute** : `8081/tcp`
-- **Version détectée** : `Apache Tomcat 7.0.109`
-- **Référence CVE** : `CVE-2017-12615`
-- **Score CVSS v3** : `8.1 (Élevé)`
+- **Point d'entrée (Endpoint)** : `/struts2/index.action`
+- **Référence CVE** : `CVE-2017-5638` (Bulletin de sécurité Apache : `S2-045`)
+- **Score CVSS v3** : `9.8 (Critique)` — Vecteur : `CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`
 - **Cible autorisée** : ESGIS VulnBox (`10.1.0.1`)
 
+---
+
 ## 2. Observations Techniques
-- **Description du composant** : Service identifié via le scan de bannières Nmap (`reports/nmap-services.txt`).
-- **Vecteur d'exposition** : Port réseau direct accessible à travers le tunnel WireGuard (`10.1.0.1`).
-- **Module Metasploit associé** : `exploit/multi/http/tomcat_jsp_upload_bypass`
+- **Description du composant** : Application web développée avec le framework Java Apache Struts 2.
+- **Vecteur d'exposition** : Analyseur d'en-tête Jakarta Multipart parser défaillant lors de la réception d'en-têtes HTTP `Content-Type` invalides contenant du code OGNL (Object-Graph Navigation Language).
+- **Module Metasploit associé** : `exploit/multi/http/struts2_content_type_ognl`
+
+---
 
 ## 3. Preuves Réelles
-> [!NOTE]
-> *Cette section sera complétée uniquement avec les captures d'écran et sorties console obtenues lors de l'exercice encadré.*
+*Emplacements réservés aux captures d'écran et sorties console :*
+- Capture de configuration : `screenshots/04-vulnerabilites/vuln-05-exec.png` *(En attente)*
+- Preuve PoC : `screenshots/05-resultats/vuln-05-poc.png` *(En attente)*
 
-- **Capture d'écran de l'analyse** : `screenshots/04-vulnerabilites/vuln-05-exec.png` *(En attente)*
-- **Preuve technique / Résultat** : `screenshots/05-resultats/vuln-05-poc.png` *(En attente)*
-- **Extrait de journal / Sortie console** :
-```text
-[En attente de vérification sur 10.1.0.1]
-```
+---
 
 ## 4. Mesures Correctives et Remédiation
-- **Mise à jour logicielle** : Appliquer les correctifs de sécurité fournis par l'éditeur pour la version `Apache Tomcat 7.0.109`.
-- **Principe de moindre privilège** : Exécuter le service sous un compte non privilégié.
-- **Filtrage réseau** : Restreindre l'accès au port `8081` aux seuls hôtes d'administration autorisés.
+- **Mise à jour logicielle** : Mettre à jour Apache Struts vers les versions 2.3.32 ou 2.5.10.1 (ou versions supérieures).
+- **Filtrage applicatif (WAF)** : Déployer un Web Application Firewall (ModSecurity) pour inspecter et bloquer les en-têtes HTTP contenant des expressions OGNL.
+- **Durcissement serveur** : Exécuter le conteneur de servlets Tomcat sous un utilisateur système dédié non privilégié (`tomcat`).
 
 ---
 **Statut actuel** : ⏳ *En attente de réalisation du test pédagogique*

@@ -77,9 +77,9 @@ Pour chacun des dix services vulnérables hébergés sur la cible, la démarche 
 | **02** | `ProFTPD 1.3.5a` (FTP alt) | 2121 | CVE-2015-3306 | 9.8 | ⏳ En attente | [Fiche 02](docs/vulnerabilites/vuln-02.md) |
 | **03** | `UnrealIRCd 3.2.8.1` (IRC) | 6667 | CVE-2010-2075 | 9.8 | ⏳ En attente | [Fiche 03](docs/vulnerabilites/vuln-03.md) |
 | **04** | `Apache Jserv AJP13` (AJP) | 8009 | CVE-2020-1938 | 9.8 | ⏳ En attente | [Fiche 04](docs/vulnerabilites/vuln-04.md) |
-| **05** | `Tomcat 7.0.109` (HTTP) | 8081 | CVE-2017-12615 | 8.1 | ⏳ En attente | [Fiche 05](docs/vulnerabilites/vuln-05.md) |
+| **05** | `Apache Struts 2` (/struts2/) | 8081 | CVE-2017-5638 | 9.8 | ⏳ En attente | [Fiche 05](docs/vulnerabilites/vuln-05.md) |
 | **06** | `Elasticsearch 1.1.1` (API) | 9200 | CVE-2014-3120 | 7.5 | ⏳ En attente | [Fiche 06](docs/vulnerabilites/vuln-06.md) |
-| **07** | `Apache httpd 2.4.41` (CGI) | 8888 | CVE-2021-41773 | 7.5 | ⏳ En attente | [Fiche 07](docs/vulnerabilites/vuln-07.md) |
+| **07** | `Apache Shellshock` (test.sh) | 8888 | CVE-2014-6271 | 9.8 | ⏳ En attente | [Fiche 07](docs/vulnerabilites/vuln-07.md) |
 | **08** | `PHP 7.4.3 / Apache` (HTTP) | 8080 | CVE-2024-4577 | 9.8 | ⏳ En attente | [Fiche 08](docs/vulnerabilites/vuln-08.md) |
 | **09** | `Open WebUI / nginx` (HTTPS) | 443 | CVE-2024-37032 | 8.8 | ⏳ En attente | [Fiche 09](docs/vulnerabilites/vuln-09.md) |
 | **10** | `OpenSSH 8.2p1` (SSH) | 22 | CVE-2020-15778 | 7.8 | ⏳ En attente | [Fiche 10](docs/vulnerabilites/vuln-10.md) |
