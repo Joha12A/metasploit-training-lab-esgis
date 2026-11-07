@@ -22,11 +22,11 @@
 
 ### 3.1 Configuration du module
 
-- **Capture d'écran :** `screenshots/04-vulnerabilites/06-elasticsearch-options.png`
+-![- **Capture d'écran :**](../../screenshots/04-vulnerabilites/06-elasticsearch-options.png)
 
 ### 3.2 Exécution et résultat
 
-- **Capture d'écran :** `screenshots/05-resultats/06-elasticsearch-session-poc.png`
+![- **Capture d'écran :**](../../screenshots/05-resultats/06-elasticsearch-session-poc.png)
 
 **Extrait de la sortie console :**
 
