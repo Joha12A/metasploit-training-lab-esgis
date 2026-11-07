@@ -123,8 +123,8 @@ Metasploit-Lab/
 | Phase | Description | Statut |
 | :--- | :--- | :--- |
 | **Phase 1** | Configuration de l'environnement, structure & Dépôt Git | ✅ **Terminé** (publié sur GitHub) |
-| **Phase 2** | Connexion VPN WireGuard & Validation de l'accès à 10.1.0.1 | ⏳ *En attente* |
-| **Phase 3** | Reconnaissance réseau & Identification des 10 services | ⏳ *En attente* |
+| **Phase 2** | Connexion VPN WireGuard & Validation de l'accès à 10.1.0.1 | ✅ **Terminé** (validé et documenté) |
+| **Phase 3** | Reconnaissance réseau & Identification des 10 services | ⏳ *En cours* |
 | **Phase 4** | Analyse CVE & Qualification des vulnérabilités | ⏳ *En attente* |
 | **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En attente* |
 | **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En attente* |
