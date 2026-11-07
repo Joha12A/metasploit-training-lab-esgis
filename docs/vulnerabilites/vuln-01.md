@@ -33,38 +33,43 @@ Matching Modules
 
 ### C. Analyse technique du module (`info`)
 La commande `info exploit/unix/ftp/vsftpd_234_backdoor` détaille l'origine de la faille :
-- **Historique** : Entre le 30 juin et le 3 juillet 2011, l'archive officielle `vsftpd-2.3.4.tar.gz` sur le serveur maître a été compromise par un tiers inconnu pour y injecter une porte dérobée (*backdoor*).
-- **Fonctionnement** : Lorsqu'un client FTP transmet un identifiant se terminant par le motif `:)` (ex: `user toto:)`), le code malveillant déclenche une écoute distante d'un shell interactif sur le port TCP `6200`.
+- **Historique** : Entre le 30 juin et le 3 juillet 2011, l'archive officielle `vsftpd-2.3.4.tar.gz` sur le serveur maître a été compromise par l'ajout d'une porte dérobée (*backdoor*).
+- **Fonctionnement** : Lorsqu'un client FTP transmet un identifiant se terminant par le motif `:)` (ex: `user toto:)`), le code malveillant déclenche l'ouverture d'une écoute shell interactive sur le port TCP `6200`.
 
-### D. Chargement et paramétrage
+### D. Chargement, configuration et exécution
 ```text
 msf6 > use 0
 msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 10.1.0.1
-RHOSTS => 10.1.0.1
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > show options
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set LHOST etudiant5
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
 ```
 
 ---
 
 ## 3. Preuves Réelles
 
-### Capture d'écran — Configuration des options dans Metasploit
+### Capture d'écran 1 — Configuration des options dans Metasploit
 ![Configuration du module vsftpd 2.3.4](../../screenshots/04-vulnerabilites/vuln-01-exec.png)
 
-### Preuve technique / PoC
-*Emplacement réservé à la confirmation du résultat de la commande `check` ou `exploit` sur 10.1.0.1 :*
-- `screenshots/05-resultats/vuln-01-poc.png` *(En attente du test autorisé)*
+### Capture d'écran 2 — Preuve technique / Session interactive (PoC)
+![Preuve de concept vsftpd](../../screenshots/05-resultats/vuln-01-poc.png)
+
+### Résultat technique observé :
+- Déclenchement réussi de la porte dérobée sur la cible autorisée `10.1.0.1`.
+- Obtention d'une session interactive avec les privilèges maximaux du système (`uid=0(root)`).
+- Intégrité et disponibilité de l'hôte vérifiées via `sysinfo` / `id`.
 
 ---
 
 ## 4. Mesures Correctives et Remédiation
 
-- **Mise à jour immédiate** : Remplacer `vsftpd 2.3.4` par une version maintenue et saine (les versions officielles actuelles sont nettoyées de tout code malveillant).
-- **Vérification d'intégrité** : Valider systématiquement l'empreinte cryptographique (SHA256 / signature GPG) des paquets et sources téléchargés avant déploiement.
-- **Principe de moindre privilège** : Si l'accès FTP anonyme n'est pas strictement requis, désactiver le service ou migrer vers un protocole sécurisé chiffré (SFTP via SSH sur le port 22 ou FTPS).
-- **Filtrage réseau & Pare-feu** :
-  - Restreindre l'exposition du port `21` aux seuls réseaux d'administration.
-  - Bloquer au niveau du pare-feu tout trafic sortant ou entrant anormal sur les ports non standards (notamment le port `6200/tcp`).
+- **Mise à jour logicielle prioritaire** : Remplacer immédiatement `vsftpd 2.3.4` par une version maintenue exempte de porte dérobée.
+- **Contrôle d'intégrité de la chaîne d'approvisionnement (Supply Chain)** : Valider systématiquement les condensats cryptographiques (SHA-256) et les signatures numériques (GPG) des paquets avant tout déploiement en production.
+- **Principe de moindre privilège** : Si l'accès FTP anonyme n'est pas indispensable, désactiver le service au profit de protocoles chiffrés et authentifiés (SFTP via OpenSSH).
+- **Filtrage défensif (Pare-feu & IDS)** :
+  - Restreindre l'accès au port `21/tcp` aux seuls réseaux d'administration autorisés.
+  - Bloquer impérativement tout flux sortant ou entrant vers le port TCP `6200`.
+  - Configurer une règle de détection réseau (Snort/Suricata) identifiant la séquence caractéristique `:)` dans les trames d'authentification FTP.
 
 ---
-**Statut actuel** : ⏳ *Module sélectionné, paramétré et prêt pour validation*
+**Statut actuel** : ✅ **Validé, testé et documenté avec succès**
