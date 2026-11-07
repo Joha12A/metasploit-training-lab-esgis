@@ -126,8 +126,8 @@ Metasploit-Lab/
 | **Phase 2** | Connexion VPN WireGuard & Validation de l'accès à 10.1.0.1 | ✅ **Terminé** (validé et documenté) |
 | **Phase 3** | Reconnaissance réseau & Identification des 10 services | ✅ **Terminé** (cartographie Nmap validée) |
 | **Phase 4** | Analyse CVE & Qualification des vulnérabilités | ✅ **Terminé** (10 services référencés) |
-| **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En cours (2/10 validés)* |
-| **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En cours (PoC 01 & 02 intégrés)* |
+| **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En cours (5/10 validés)* |
+| **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En cours (PoC 01 02 04 06 & 07intégrés)* |
 | **Phase 7** | Rédaction du plan de remédiation & Durcissement | ⏳ *En attente* |
 
 ---
