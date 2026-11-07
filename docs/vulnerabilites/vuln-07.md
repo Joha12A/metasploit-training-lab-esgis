@@ -18,8 +18,8 @@
 ---
 
 ## 3. Preuves Réelles
-![Capture de configuration] : (../../screenshots/04-vulnerabilites/07-shellshock-options.png)
-![Preuve PoC] : (../../screenshots/05-resultats/07-shellshock-session-poc.png)
+- Capture de configuration : ![alt text](../../screenshots/04-vulnerabilites/07-shellshock-options.png)
+- Preuve PoC : ![alt text](../../screenshots/05-resultats/07-shellshock-session-poc.png)
 
 ---
 
