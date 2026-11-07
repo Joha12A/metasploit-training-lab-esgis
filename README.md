@@ -74,7 +74,7 @@ Pour chacun des dix services vulnérables hébergés sur la cible, la démarche 
 | N° | Service | Port | CVE | CVSS | Statut | Fiche détaillée |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
 | **01** | `vsftpd 2.3.4` (FTP) | 21 | CVE-2011-2523 | 9.8 | ✅ Validé | [Fiche 01](docs/vulnerabilites/vuln-01.md) |
-| **02** | `ProFTPD 1.3.5a` (FTP alt) | 2121 | CVE-2015-3306 | 9.8 | ⏳ En attente | [Fiche 02](docs/vulnerabilites/vuln-02.md) |
+| **02** | `ProFTPD 1.3.5a` (FTP alt) | 2121 | CVE-2015-3306 | 9.8 | ✅ Validé | [Fiche 02](docs/vulnerabilites/vuln-02.md) |
 | **03** | `UnrealIRCd 3.2.8.1` (IRC) | 6667 | CVE-2010-2075 | 9.8 | ⏳ En attente | [Fiche 03](docs/vulnerabilites/vuln-03.md) |
 | **04** | `Apache Jserv AJP13` (AJP) | 8009 | CVE-2020-1938 | 9.8 | ⏳ En attente | [Fiche 04](docs/vulnerabilites/vuln-04.md) |
 | **05** | `Apache Struts 2` (/struts2/) | 8081 | CVE-2017-5638 | 9.8 | ⏳ En attente | [Fiche 05](docs/vulnerabilites/vuln-05.md) |
@@ -126,8 +126,8 @@ Metasploit-Lab/
 | **Phase 2** | Connexion VPN WireGuard & Validation de l'accès à 10.1.0.1 | ✅ **Terminé** (validé et documenté) |
 | **Phase 3** | Reconnaissance réseau & Identification des 10 services | ✅ **Terminé** (cartographie Nmap validée) |
 | **Phase 4** | Analyse CVE & Qualification des vulnérabilités | ✅ **Terminé** (10 services référencés) |
-| **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En cours (1/10 validé)* |
-| **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En cours (PoC 01 intégré)* |
+| **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En cours (2/10 validés)* |
+| **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En cours (PoC 01 & 02 intégrés)* |
 | **Phase 7** | Rédaction du plan de remédiation & Durcissement | ⏳ *En attente* |
 
 ---
