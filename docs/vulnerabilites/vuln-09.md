@@ -1,33 +1,25 @@
-# Fiche Vulnérabilité N°09 — Open WebUI
+# Fiche Vulnérabilité N°09 — Ollama (CVE-2024-37032)
 
 ## 1. Contexte et Identification
-- **Service cible** : Open WebUI
-- **Port d'écoute** : `443/tcp`
-- **Version détectée** : `nginx / Open WebUI`
+- **Service cible** : Ollama (serveur d'IA) derrière Open WebUI
+- **Port d'écoute** : `443/tcp` (via nginx/Open WebUI)
+- **Version détectée** : `Ollama 0.11.4`
 - **Référence CVE** : `CVE-2024-37032`
 - **Score CVSS v3** : `8.8 (Élevé)`
 - **Cible autorisée** : ESGIS VulnBox (`10.1.0.1`)
 
 ## 2. Observations Techniques
-- **Description du composant** : Service identifié via le scan de bannières Nmap (`reports/nmap-services.txt`).
-- **Vecteur d'exposition** : Port réseau direct accessible à travers le tunnel WireGuard (`10.1.0.1`).
-- **Module Metasploit associé** : `exploit/linux/http/open_webui_rce`
+- **Description** : Ollama est un serveur d'exécution de modèles d'IA, souvent utilisé avec Open WebUI.
+- **Vecteur d'exposition** : Port 443 (HTTPS) via nginx/Open WebUI.
+- **Module Metasploit** : `exploit/linux/http/ollama_rce_cve_2024_37032`
 
-## 3. Preuves Réelles
-> [!NOTE]
-> *Cette section sera complétée uniquement avec les captures d'écran et sorties console obtenues lors de l'exercice encadré.*
+## 3. Démarche survolée
+- Le module Metasploit a été testé mais a échoué (`Ollama 0.11.4 (patched)`).
+- Analyse : la version 0.11.4 intègre le correctif de la CVE-2024-37032. La vulnérabilité n'est pas exploitable.
 
-- **Capture d'écran de l'analyse** : `screenshots/04-vulnerabilites/vuln-09-exec.png` *(En attente)*
-- **Preuve technique / Résultat** : `screenshots/05-resultats/vuln-09-poc.png` *(En attente)*
-- **Extrait de journal / Sortie console** :
-```text
-[En attente de vérification sur 10.1.0.1]
-```
-
-## 4. Mesures Correctives et Remédiation
-- **Mise à jour logicielle** : Appliquer les correctifs de sécurité fournis par l'éditeur pour la version `nginx / Open WebUI`.
-- **Principe de moindre privilège** : Exécuter le service sous un compte non privilégié.
-- **Filtrage réseau** : Restreindre l'accès au port `443` aux seuls hôtes d'administration autorisés.
+## 4. Mesures Correctives
+- **Maintien à jour** : Version 0.11.4 déjà corrigée.
+- **Filtrage réseau** : Restreindre l'accès au port 443 aux réseaux d'administration.
 
 ---
-**Statut actuel** : ⏳ *En attente de réalisation du test pédagogique*
+**Statut** : ⏳ **En attente** — Version corrigée (Ollama 0.11.4) ; à réévaluer.

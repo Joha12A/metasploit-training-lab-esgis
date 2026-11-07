@@ -1,33 +1,27 @@
-# Fiche Vulnérabilité N°05 — Apache Struts 2 (S2-045)
+# Fiche Vulnérabilité N°05 — Apache Struts 2 (CVE-2017-5638)
 
 ## 1. Contexte et Identification
-- **Service cible** : Serveur web d'applications Apache Struts 2
+- **Service cible** : Apache Struts 2 (Showcase)
 - **Port d'écoute** : `8081/tcp`
-- **Point d'entrée (Endpoint)** : `/struts2/index.action`
-- **Référence CVE** : `CVE-2017-5638` (Bulletin de sécurité Apache : `S2-045`)
-- **Score CVSS v3** : `9.8 (Critique)` — Vecteur : `CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`
+- **Point d'accès** : `/struts2/index.action`
+- **Version détectée** : Struts2 Showcase sur Tomcat 7.0.109
+- **Référence CVE** : `CVE-2017-5638`
+- **Score CVSS v3** : `9.8 (Critique)`
 - **Cible autorisée** : ESGIS VulnBox (`10.1.0.1`)
 
----
-
 ## 2. Observations Techniques
-- **Description du composant** : Application web développée avec le framework Java Apache Struts 2.
-- **Vecteur d'exposition** : Analyseur d'en-tête Jakarta Multipart parser défaillant lors de la réception d'en-têtes HTTP `Content-Type` invalides contenant du code OGNL (Object-Graph Navigation Language).
-- **Module Metasploit associé** : `exploit/multi/http/struts2_content_type_ognl`
+- **Description** : Application Struts2 Showcase exposée sur le port 8081.
+- **Vecteur d'exposition** : En-tête HTTP `Content-Type` malveillant contenant une expression OGNL.
+- **Module Metasploit** : `exploit/multi/http/struts2_code_exec_showcase`
+
+## 3. Démarche survolée
+- Le module Metasploit a confirmé l'exécution de code (`[+] Command executed`), mais le reverse shell n'a pas abouti.
+- Un test manuel avec `curl` a renvoyé une erreur OGNL (`No result defined for action...`), confirmant l'interprétation de l'expression, sans retour de commande.
+
+## 4. Mesures Correctives
+- **Mise à jour** : Struts 2 ≥ 2.3.32 ou ≥ 2.5.10.1.
+- **WAF** : Bloquer les `Content-Type` contenant `%{...}`.
+- **Suppression** : Retirer les applications de démonstration en production.
 
 ---
-
-## 3. Preuves Réelles
-*Emplacements réservés aux captures d'écran et sorties console :*
-- Capture de configuration : `screenshots/04-vulnerabilites/vuln-05-exec.png` *(En attente)*
-- Preuve PoC : `screenshots/05-resultats/vuln-05-poc.png` *(En attente)*
-
----
-
-## 4. Mesures Correctives et Remédiation
-- **Mise à jour logicielle** : Mettre à jour Apache Struts vers les versions 2.3.32 ou 2.5.10.1 (ou versions supérieures).
-- **Filtrage applicatif (WAF)** : Déployer un Web Application Firewall (ModSecurity) pour inspecter et bloquer les en-têtes HTTP contenant des expressions OGNL.
-- **Durcissement serveur** : Exécuter le conteneur de servlets Tomcat sous un utilisateur système dédié non privilégié (`tomcat`).
-
----
-**Statut actuel** : ⏳ *En attente de réalisation du test pédagogique*
+**Statut** : ⏳ **En cours** — RCE partiellement confirmée, session non obtenue.
