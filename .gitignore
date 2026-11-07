@@ -1,0 +1,19 @@
+# Fichiers sensibles
+*.conf
+*.key
+*.pem
+.env
+.env.*
+
+# Fichiers temporaires
+*.log
+*.tmp
+*.swp
+
+# Configuration locale
+.vscode/
+.idea/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
