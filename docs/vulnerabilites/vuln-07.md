@@ -19,8 +19,8 @@
 
 ## 3. Preuves Réelles
 *Emplacements réservés aux captures d'écran et sorties console :*
-- Capture de configuration : `screenshots/04-vulnerabilites/vuln-07-exec.png` *(En attente)*
-- Preuve PoC : `screenshots/05-resultats/vuln-07-poc.png` *(En attente)*
+- Capture de configuration : `screenshots/04-vulnerabilites/07-shellshock-options.png`
+- Preuve PoC : `screenshots/05-resultats/07-shellshock-session-poc.png`
 
 ---
 
@@ -30,4 +30,4 @@
 - **Principe de moindre privilège** : Restreindre les droits du processus d'exécution Apache (`www-data`).
 
 ---
-**Statut actuel** : ⏳ *En attente de réalisation du test pédagogique*
+**Statut actuel** : ✅ **Validé, testé et documenté avec succès**
