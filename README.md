@@ -69,20 +69,20 @@ Pour chacun des dix services vulnérables hébergés sur la cible, la démarche 
 ## 6. Tableau de Suivi des Dix Vulnérabilités
 
 > [!NOTE]
-> Les informations ci-dessous seront renseignées étape par étape au fur et à mesure des tests effectifs sur le laboratoire. Seuls les résultats réels seront intégrés.
+> Les informations ci-dessous sont issues de la cartographie réseau Nmap réalisée sur `10.1.0.1`. Les tests et vérifications effectives seront consignés progressivement.
 
 | N° | Service | Port | CVE | CVSS | Statut | Fiche détaillée |
 | :---: | :--- | :---: | :---: | :---: | :---: | :--- |
-| **01** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 01](docs/vulnerabilites/vuln-01.md) |
-| **02** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 02](docs/vulnerabilites/vuln-02.md) |
-| **03** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 03](docs/vulnerabilites/vuln-03.md) |
-| **04** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 04](docs/vulnerabilites/vuln-04.md) |
-| **05** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 05](docs/vulnerabilites/vuln-05.md) |
-| **06** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 06](docs/vulnerabilites/vuln-06.md) |
-| **07** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 07](docs/vulnerabilites/vuln-07.md) |
-| **08** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 08](docs/vulnerabilites/vuln-08.md) |
-| **09** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 09](docs/vulnerabilites/vuln-09.md) |
-| **10** | À identifier | — | À identifier | — | ⏳ En attente | [Fiche 10](docs/vulnerabilites/vuln-10.md) |
+| **01** | `vsftpd 2.3.4` (FTP) | 21 | CVE-2011-2523 | 9.8 | ⏳ En attente | [Fiche 01](docs/vulnerabilites/vuln-01.md) |
+| **02** | `ProFTPD 1.3.5a` (FTP alt) | 2121 | CVE-2015-3306 | 9.8 | ⏳ En attente | [Fiche 02](docs/vulnerabilites/vuln-02.md) |
+| **03** | `UnrealIRCd 3.2.8.1` (IRC) | 6667 | CVE-2010-2075 | 9.8 | ⏳ En attente | [Fiche 03](docs/vulnerabilites/vuln-03.md) |
+| **04** | `Apache Jserv AJP13` (AJP) | 8009 | CVE-2020-1938 | 9.8 | ⏳ En attente | [Fiche 04](docs/vulnerabilites/vuln-04.md) |
+| **05** | `Tomcat 7.0.109` (HTTP) | 8081 | CVE-2017-12615 | 8.1 | ⏳ En attente | [Fiche 05](docs/vulnerabilites/vuln-05.md) |
+| **06** | `Elasticsearch 1.1.1` (API) | 9200 | CVE-2014-3120 | 7.5 | ⏳ En attente | [Fiche 06](docs/vulnerabilites/vuln-06.md) |
+| **07** | `Apache httpd 2.4.41` (CGI) | 8888 | CVE-2021-41773 | 7.5 | ⏳ En attente | [Fiche 07](docs/vulnerabilites/vuln-07.md) |
+| **08** | `PHP 7.4.3 / Apache` (HTTP) | 8080 | CVE-2024-4577 | 9.8 | ⏳ En attente | [Fiche 08](docs/vulnerabilites/vuln-08.md) |
+| **09** | `Open WebUI / nginx` (HTTPS) | 443 | CVE-2024-37032 | 8.8 | ⏳ En attente | [Fiche 09](docs/vulnerabilites/vuln-09.md) |
+| **10** | `OpenSSH 8.2p1` (SSH) | 22 | CVE-2020-15778 | 7.8 | ⏳ En attente | [Fiche 10](docs/vulnerabilites/vuln-10.md) |
 
 ---
 
@@ -124,8 +124,8 @@ Metasploit-Lab/
 | :--- | :--- | :--- |
 | **Phase 1** | Configuration de l'environnement, structure & Dépôt Git | ✅ **Terminé** (publié sur GitHub) |
 | **Phase 2** | Connexion VPN WireGuard & Validation de l'accès à 10.1.0.1 | ✅ **Terminé** (validé et documenté) |
-| **Phase 3** | Reconnaissance réseau & Identification des 10 services | ⏳ *En cours* |
-| **Phase 4** | Analyse CVE & Qualification des vulnérabilités | ⏳ *En attente* |
+| **Phase 3** | Reconnaissance réseau & Identification des 10 services | ✅ **Terminé** (cartographie Nmap validée) |
+| **Phase 4** | Analyse CVE & Qualification des vulnérabilités | ⏳ *En cours* |
 | **Phase 5** | Tests pédagogiques Metasploit | ⏳ *En attente* |
 | **Phase 6** | Collecte des preuves et formalisation des résultats | ⏳ *En attente* |
 | **Phase 7** | Rédaction du plan de remédiation & Durcissement | ⏳ *En attente* |

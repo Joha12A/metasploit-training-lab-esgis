@@ -1,0 +1,90 @@
+# Nmap 7.991 scan initiated Sat Nov  7 10:29:10 2026 as: /usr/lib/nmap/nmap --privileged -sV -sC -Pn -p 21,22,80,443,2121,6667,8009,8080,8081,8443,8888,9090,9200 -T4 -oN /home/johanes/Documents/Metasploit-Lab/reports/nmap-services.txt 10.1.0.1
+Nmap scan report for 10.1.0.1
+Host is up (0.15s latency).
+
+PORT     STATE SERVICE    VERSION
+21/tcp   open  ftp        vsftpd 2.3.4
+22/tcp   open  ssh        OpenSSH 8.2p1 Ubuntu 4ubuntu0.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 f3:97:d0:8b:73:1c:b0:35:03:b8:0c:60:3d:01:8d:c6 (RSA)
+|   256 d1:6e:ec:9f:89:85:7b:46:41:69:6b:f4:b0:cd:08:97 (ECDSA)
+|_  256 06:13:32:b4:1a:1c:8b:90:a9:47:1b:65:77:c6:3d:e4 (ED25519)
+80/tcp   open  http       nginx
+443/tcp  open  ssl/http   nginx
+|_http-title: Open WebUI
+|_ssl-date: TLS randomness does not represent time
+| http-robots.txt: 1 disallowed entry 
+|_/
+| ssl-cert: Subject: commonName=ai.ouritek.com
+| Subject Alternative Name: DNS:ai.ouritek.com
+| Not valid before: 2026-09-15T17:04:18
+|_Not valid after:  2026-12-14T17:04:17
+2121/tcp open  ftp        ProFTPD 1.3.5a
+6667/tcp open  irc?
+| fingerprint-strings: 
+|   GenericLines, GetRequest, HTTPOptions, Help, NULL, Socks4, Socks5: 
+|     :irc.ouritek.lab 001 user :Welcome to OURITEK IRC Lab (UnrealIRCd 3.2.8.1)
+|     :irc.ouritek.lab 002 user :Your host is irc.ouritek.lab, running version Unreal3.2.8.1
+|_    :irc.ouritek.lab 376 user :End of /MOTD command.
+8009/tcp open  ajp13      Apache Jserv (Protocol v1.3)
+|_ajp-methods: Failed to get a valid response for the OPTION request
+8080/tcp open  http       Apache httpd 2.4.41 ((Ubuntu))
+| http-open-proxy: Potentially OPEN proxy.
+|_Methods supported:CONNECTION
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: PHP 7.4.3-4ubuntu2.29 - phpinfo()
+8081/tcp open  http       Apache Tomcat/Coyote JSP engine 1.1
+|_http-server-header: Apache-Coyote/1.1
+|_http-favicon: Apache Tomcat
+|_http-title: Apache Tomcat/7.0.109
+8443/tcp open  tcpwrapped
+8888/tcp open  http       Apache httpd 2.4.41
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+|_http-title: Index of /
+| http-ls: Volume /
+| SIZE  TIME              FILENAME
+| -     2026-11-06 13:13  cgi-bin/
+|_
+9090/tcp open  http       nginx
+|_http-title: 404 Not Found
+9200/tcp open  http       Elasticsearch REST API 1.1.1 (name: Shen Kuei; Lucene 4.7)
+|_http-title: Site doesn't have a title (application/json; charset=UTF-8).
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port6667-TCP:V=7.991%I=7%D=11/7%Time=6AEEEF6E%P=x86_64-pc-linux-gnu%r(N
+SF:ULL,D6,":irc\.ouritek\.lab\x20001\x20user\x20:Welcome\x20to\x20OURITEK\
+SF:x20IRC\x20Lab\x20\(UnrealIRCd\x203\.2\.8\.1\)\r\n:irc\.ouritek\.lab\x20
+SF:002\x20user\x20:Your\x20host\x20is\x20irc\.ouritek\.lab,\x20running\x20
+SF:version\x20Unreal3\.2\.8\.1\r\n:irc\.ouritek\.lab\x20376\x20user\x20:En
+SF:d\x20of\x20/MOTD\x20command\.\r\n")%r(GenericLines,D6,":irc\.ouritek\.l
+SF:ab\x20001\x20user\x20:Welcome\x20to\x20OURITEK\x20IRC\x20Lab\x20\(Unrea
+SF:lIRCd\x203\.2\.8\.1\)\r\n:irc\.ouritek\.lab\x20002\x20user\x20:Your\x20
+SF:host\x20is\x20irc\.ouritek\.lab,\x20running\x20version\x20Unreal3\.2\.8
+SF:\.1\r\n:irc\.ouritek\.lab\x20376\x20user\x20:End\x20of\x20/MOTD\x20comm
+SF:and\.\r\n")%r(Help,D6,":irc\.ouritek\.lab\x20001\x20user\x20:Welcome\x2
+SF:0to\x20OURITEK\x20IRC\x20Lab\x20\(UnrealIRCd\x203\.2\.8\.1\)\r\n:irc\.o
+SF:uritek\.lab\x20002\x20user\x20:Your\x20host\x20is\x20irc\.ouritek\.lab,
+SF:\x20running\x20version\x20Unreal3\.2\.8\.1\r\n:irc\.ouritek\.lab\x20376
+SF:\x20user\x20:End\x20of\x20/MOTD\x20command\.\r\n")%r(Socks5,D6,":irc\.o
+SF:uritek\.lab\x20001\x20user\x20:Welcome\x20to\x20OURITEK\x20IRC\x20Lab\x
+SF:20\(UnrealIRCd\x203\.2\.8\.1\)\r\n:irc\.ouritek\.lab\x20002\x20user\x20
+SF::Your\x20host\x20is\x20irc\.ouritek\.lab,\x20running\x20version\x20Unre
+SF:al3\.2\.8\.1\r\n:irc\.ouritek\.lab\x20376\x20user\x20:End\x20of\x20/MOT
+SF:D\x20command\.\r\n")%r(Socks4,D6,":irc\.ouritek\.lab\x20001\x20user\x20
+SF::Welcome\x20to\x20OURITEK\x20IRC\x20Lab\x20\(UnrealIRCd\x203\.2\.8\.1\)
+SF:\r\n:irc\.ouritek\.lab\x20002\x20user\x20:Your\x20host\x20is\x20irc\.ou
+SF:ritek\.lab,\x20running\x20version\x20Unreal3\.2\.8\.1\r\n:irc\.ouritek\
+SF:.lab\x20376\x20user\x20:End\x20of\x20/MOTD\x20command\.\r\n")%r(GetRequ
+SF:est,D6,":irc\.ouritek\.lab\x20001\x20user\x20:Welcome\x20to\x20OURITEK\
+SF:x20IRC\x20Lab\x20\(UnrealIRCd\x203\.2\.8\.1\)\r\n:irc\.ouritek\.lab\x20
+SF:002\x20user\x20:Your\x20host\x20is\x20irc\.ouritek\.lab,\x20running\x20
+SF:version\x20Unreal3\.2\.8\.1\r\n:irc\.ouritek\.lab\x20376\x20user\x20:En
+SF:d\x20of\x20/MOTD\x20command\.\r\n")%r(HTTPOptions,D6,":irc\.ouritek\.la
+SF:b\x20001\x20user\x20:Welcome\x20to\x20OURITEK\x20IRC\x20Lab\x20\(Unreal
+SF:IRCd\x203\.2\.8\.1\)\r\n:irc\.ouritek\.lab\x20002\x20user\x20:Your\x20h
+SF:ost\x20is\x20irc\.ouritek\.lab,\x20running\x20version\x20Unreal3\.2\.8\
+SF:.1\r\n:irc\.ouritek\.lab\x20376\x20user\x20:End\x20of\x20/MOTD\x20comma
+SF:nd\.\r\n");
+Service Info: Host: vulnbox.ouritek.lab; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+# Nmap done at Sat Nov  7 10:32:39 2026 -- 1 IP address (1 host up) scanned in 208.87 seconds
