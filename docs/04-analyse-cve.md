@@ -13,7 +13,7 @@ Associer chaque service détecté lors de la phase de reconnaissance à des vuln
    searchsploit "<Nom_Service> <Version>"
    ```
 2. Consultation des fiches CVE sur le NIST NVD (National Vulnerability Database) pour extraire le score CVSS et le vecteur d'attaque.
-3. Synthèse des dix vulnérabilités cibles sous forme de tableau comparatif.
+3. Synthèse et documentation détaillée dans les fiches unitaires du répertoire `docs/vulnerabilites/`.
 
 ## 4. Captures d'écran
 *Emplacement réservé aux captures d'écran :*
@@ -21,20 +21,21 @@ Associer chaque service détecté lors de la phase de reconnaissance à des vuln
 - Fiches de vulnérabilités CVE : `screenshots/04-vulnerabilites/02-cve-details.png` *(En attente)*
 
 ## 5. Résultat observé
-*(Section en attente : le tableau ci-dessous sera complété dès la phase de reconnaissance validée)*
+> [!NOTE]
+> Le tableau ci-dessous et les fiches unitaires associées seront renseignés au fur et à mesure des tests réels.
 
-| Service identifié | Port | Version | Référence CVE | Score CVSS | Statut |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Service 1 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 2 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 3 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 4 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 5 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 6 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 7 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 8 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 9 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
-| Service 10 | *À renseigner* | *À renseigner* | *En attente* | *En attente* | À analyser |
+| N° | Service | Port | CVE | CVSS | Statut | Fiche détaillée |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- |
+| **01** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-01.md](vulnerabilites/vuln-01.md) |
+| **02** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-02.md](vulnerabilites/vuln-02.md) |
+| **03** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-03.md](vulnerabilites/vuln-03.md) |
+| **04** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-04.md](vulnerabilites/vuln-04.md) |
+| **05** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-05.md](vulnerabilites/vuln-05.md) |
+| **06** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-06.md](vulnerabilites/vuln-06.md) |
+| **07** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-07.md](vulnerabilites/vuln-07.md) |
+| **08** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-08.md](vulnerabilites/vuln-08.md) |
+| **09** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-09.md](vulnerabilites/vuln-09.md) |
+| **10** | À identifier | — | À identifier | — | ⏳ En attente | [vuln-10.md](vulnerabilites/vuln-10.md) |
 
 ## 6. Analyse technique
 *(Section en attente d'évaluation de l'impact des vulnérabilités identifiées)*
