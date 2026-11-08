@@ -59,7 +59,7 @@ PORT     STATE SERVICE VERSION
 La recherche du module correspondant a été effectuée dans `msfconsole` :
 
 ```text
-msf6 > search proftpd 1.3.5
+msf > search proftpd 1.3.5
 
 Matching Modules
 ================
